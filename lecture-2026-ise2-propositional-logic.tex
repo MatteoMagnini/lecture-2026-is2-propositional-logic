@@ -1,0 +1,239 @@
+%! Author = matteomagnini
+%! Date = 17/02/26
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage{amsmath}
+
+\title{
+    Intelligent System 2\\
+    Tutorial week 1: Propositional logic
+}
+
+% Document
+\begin{document}
+
+    \maketitle
+
+    \section{Set Theory}
+    \label{sec:set-theory}
+
+    Let $A$ and $B$ be two sets.
+    %
+    \begin{itemize}
+        \item The letter $x$ denotes a generic element, commonly used as a variable.
+        \item The letter $a$ denotes a specific element, often used for concrete examples.
+        \item The symbol $\phi$ denotes a property, condition, or predicate which can be either true or false for a given element.
+    \end{itemize}
+
+    \textbf{Notation:}
+    \begin{itemize}
+        \item $\{x : \phi(x)\}$ denotes the set of all elements $x$ such that the property $\phi(x)$ is true.
+        \item $a \in \{x : \phi(x)\}$ if and only if $\phi(a)$ holds; that is, $a$ satisfies the property $\phi$.
+        \item $\{a_1, a_2, \dots, a_n\}$ is the set containing the elements $a_1, a_2, \dots, a_n$.
+        \item $x \in \{a_1, a_2, \dots, a_n\}$ if and only if $x = a_1$ or $x = a_2$ or $\dots$ or $x = a_n$.
+    \end{itemize}
+
+    \textbf{Example:}
+    \begin{itemize}
+        \item If $\phi(x)$ means ``$x$ is an even number,'' then $\{x : \phi(x)\}$ is the set of all even numbers.
+        \item Therefore, $4 \in \{x : \phi(x)\}$, since $\phi(4)$ (``4 is even'') is true.
+    \end{itemize}
+
+    \subsection{Sets of Sets}
+    \label{subsec:sets-of-sets}
+
+    A \emph{set of sets} is a set whose elements are themselves sets.
+    %
+    Let us consider specific examples:
+
+    \begin{itemize}
+        \item Let $X = \{\{1,2\}, \{3,4\}\}$.
+        \item Let $I = \{1,2\}$.
+    \end{itemize}
+
+    We analyze membership:
+    \begin{align*}
+        &I \in X \quad &\text{(True, since $I$ is exactly one of the elements of $X$)}. \\
+        &1 \in X \quad &\text{(False, since $1$ is an element of $I$, not directly of $X$)}. \\
+        &I \subseteq X \quad &\text{(False, since not every element of $I$ is a set contained in $X$)}.
+    \end{align*}
+
+    \textbf{General Principle:}
+
+    Given a set $S$ and a set of sets $Z$, an element $A$ satisfies
+    \[
+    A \in Z \iff A \text{ is one of the sets contained in } Z.
+    \]
+    Whereas
+    \[
+    A \subseteq Z \iff \text{every element of } A \text{ is an element of } Z \text{ (not necessarily a set)}.
+    \]
+
+    \textbf{Another Example:}
+
+    \begin{itemize}
+        \item Let $Y = \{ \{a\}, \{b, c\}, \emptyset \}$.
+        \item Is $\{a\} \in Y$? \hspace{1cm} Yes, since $\{a\}$ is one of the elements (sets) in $Y$.
+        \item Is $a \in Y$? \hspace{1.7cm} No, since $a$ itself does not appear as an element of $Y$; it is contained in $\{a\}$.
+        \item Is $\emptyset \in Y$? \hspace{1.3cm} Yes, as it is explicitly listed as an element.
+    \end{itemize}
+
+    Thus, membership in a set of sets always refers to the entire set being an element, not just its contents.
+
+    \subsection{Set Operations}
+    \label{subsec:set-operations}
+
+    Given two sets $A$ and $B$, we define the following standard operations:
+
+    \begin{itemize}
+        \item \textbf{Union:}
+        \[
+            A \cup B = \{\, x \mid x \in A \text{ or } x \in B \,\}
+        \]
+        An element is in the union if it belongs to at least one of the sets.
+
+        \item \textbf{Intersection:}
+        \[
+            A \cap B = \{\, x \mid x \in A \text{ and } x \in B \,\}
+        \]
+        An element is in the intersection if it belongs to both sets.
+
+        \item \textbf{Set Difference:}
+        \[
+            A - B = \{\, x \mid x \in A \text{ and } x \notin B \,\}
+        \]
+        An element is in the difference if it is in $A$ and not in $B$.
+
+        \item \textbf{Complement:}
+        \[
+            \overline{A} = U - A
+        \]
+        where $U$ denotes the universe under consideration.
+        %
+        The complement contains all elements in $U$ that are not in $A$.
+    \end{itemize}
+
+    \textbf{Examples:}
+
+    \begin{itemize}
+        \item Let $A = \{1, 2, 3\}$ and $B = \{3, 4, 5\}$.
+
+        \item Union:\\
+        $A \cup B = \{1, 2, 3, 4, 5\}$
+
+        \item Intersection:\\
+        $A \cap B = \{3\}$
+
+        \item Difference:\\
+        $A - B = \{1, 2\}$\\
+        $B - A = \{4, 5\}$
+
+        \item If $U = \{1, 2, 3, 4, 5, 6\}$, then the complement of $A$ is:\\
+        $\overline{A} = U - A = \{4, 5, 6\}$
+    \end{itemize}
+
+    \textbf{Properties:}
+    \begin{itemize}
+        \item $A \cap B \subseteq A$
+        \item $A \subseteq A \cup B$
+        \item $A - B \subseteq A$
+        \item $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+        \item $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+    \end{itemize}
+
+    \subsection{De Morgan's Laws}
+    \label{subsec:de-morgan}
+
+    De Morgan's Laws provide relationships between unions, intersections, and complements of sets.
+    %
+    Specifically, for any two sets $A$ and $B$ in a universe $U$:
+
+    \begin{align*}
+        \overline{A \cup B} &= \overline{A} \cap \overline{B} \\
+        \overline{A \cap B} &= \overline{A} \cup \overline{B}
+    \end{align*}
+
+    where $\overline{A}$ denotes the complement of $A$ with respect to $U$.
+
+    \paragraph{Truth Tables for De Morgan's Laws}
+
+    Let $x$ be an element of the universe $U$.
+    %
+    We analyze its membership for all possible cases:
+
+    \begin{center}
+    \begin{tabular}{|c|c||c|c|c|c|c|}
+        \hline
+        $x \in A$ & $x \in B$ & $x \in A \cup B$ & $x \in \overline{A \cup B}$ & $x \in \overline{A}$ & $x \in \overline{B}$ & $x \in \overline{A} \cap \overline{B}$ \\
+        \hline
+        F & F & F & T & T & T & T \\
+        F & T & T & F & T & F & F \\
+        T & F & T & F & F & T & F \\
+        T & T & T & F & F & F & F \\
+        \hline
+    \end{tabular}
+    \end{center}
+
+    From the first and last columns we see
+    \[
+    x \in \overline{A \cup B} \iff x \in \overline{A} \cap \overline{B}
+    \]
+
+    \vspace{0.5cm}
+
+    \begin{center}
+    \begin{tabular}{|c|c||c|c|c|c|c|}
+        \hline
+        $x \in A$ & $x \in B$ & $x \in A \cap B$ & $x \in \overline{A \cap B}$ & $x \in \overline{A}$ & $x \in \overline{B}$ & $x \in \overline{A} \cup \overline{B}$ \\
+        \hline
+        F & F & F & T & T & T & T \\
+        F & T & F & T & T & F & T \\
+        T & F & F & T & F & T & T \\
+        T & T & T & F & F & F & F \\
+        \hline
+    \end{tabular}
+    \end{center}
+
+    From the first and last columns we see
+    \[
+    x \in \overline{A \cap B} \iff x \in \overline{A} \cup \overline{B}
+    \]
+
+    \textbf{Conclusion:}\\
+    The truth tables confirm the validity of De Morgan's Laws for set complements, unions, and intersections.
+
+    \paragraph{Alternative Forms of De Morgan's Laws}
+
+    Besides the standard complement forms, De Morgan's Laws can also be expressed as:
+
+    \begin{align*}
+        A \cap B &= \overline{\,\overline{A} \cup \overline{B}\,} \\[1em]
+        A \cup B &= \overline{\,\overline{A} \cap \overline{B}\,}
+    \end{align*}
+
+    \noindent
+    In words:
+    \begin{itemize}
+        \item The intersection of $A$ and $B$ equals the complement of the union of their respective complements.
+        \item The union of $A$ and $B$ equals the complement of the intersection of their respective complements.
+    \end{itemize}
+
+    \noindent
+    \textbf{Remark:} The truth tables and verification of these equivalences are left as an exercise for the student.
+
+
+
+    \section{Exercises}
+    \label{sec:exercises}
+
+
+
+
+
+
+
+
+\end{document}
