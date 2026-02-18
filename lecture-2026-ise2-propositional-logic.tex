@@ -6,6 +6,7 @@
 
 % Packages
 \usepackage{amsmath}
+\usepackage{amssymb}
 
 \title{
     Intelligent System 2\\
@@ -225,10 +226,153 @@
     \textbf{Remark:} The truth tables and verification of these equivalences are left as an exercise for the student.
 
 
+    \subsection{Power Set}
+    \label{subsec:power-set}
 
+    Given a set $A$, the \textbf{power set} of $A$, denoted by $P(A)$ or $2^A$, is the set of all subsets of $A$.
+
+    \[
+    P(A) = \{\, X \mid X \subseteq A\,\}
+    \]
+
+    \textbf{Example:}
+    If $A = \{a, b\}$, then
+
+    \[
+    P(A) = \{\varnothing, \{a\}, \{b\}, \{a, b\}\}
+    \]
+
+    
+
+    \subsection*{Union of a Family of Sets}
+
+    Let $\mathcal{C}$ be a family (collection) of sets.
+    %
+    The \textbf{union} of $\mathcal{C}$ is the set of all elements that belong to at least one set in $\mathcal{C}$:
+
+    \[
+    \bigcup \mathcal{C} = \{\, x \mid \exists A \in \mathcal{C} \text{ such that } x \in A\,\}
+    \]
+
+    \textbf{Example:}
+    If $\mathcal{C} = \{\,\{1,2\},\,\{3\},\,\{4,5\}\,\}$, then
+
+    \[
+    \bigcup \mathcal{C} = \{1, 2, 3, 4, 5\}
+    \]
+
+
+    \subsection{Ordered Pairs}
+    \label{subsec:ordered-pairs}
+
+    An \textbf{ordered pair} $(a, b)$ is represented in set theory by
+
+    \[
+    \langle a, b \rangle = \{\{a\}, \{a, b\}\}
+    \]
+
+    Ordered pairs satisfy the property:
+
+    \[
+    \langle a, b \rangle = \langle c, d \rangle \iff a = c \text{ and } b = d
+    \]
+
+
+    \subsection{Cartesian Product}
+    \label{subsec:cartesian-product}
+
+    Given two sets $A$ and $B$, the \textbf{Cartesian product} is the set of all ordered pairs $(x, y)$ with $x \in A$ and $y \in B$:
+
+    \[
+    A \times B = \{\,(x, y)\,|\, x \in A,\ y \in B\,\}
+    \]
+
+    \textbf{Example:}
+    If $A = \{1, 2\}$ and $B = \{3, 4\}$,
+
+    \[
+    A \times B = \{ (1,3),\ (1,4),\ (2,3),\ (2,4)\}
+    \]
+
+
+    \subsection{Relations}
+    \label{subsec:relations}
+
+    A \textbf{relation} $R$ on a set $A$ is a subset of the Cartesian product $A \times A$:
+
+    \[
+    R \subseteq A \times A
+    \]
+
+    If $R$ and $S$ are two relations on $A$, we can define:
+    \begin{itemize}
+        \item $a\,(R \cup S)\,b$ iff $a\,R\,b$ or $a\,S\,b$
+        \item $a\,(R \cap S)\,b$ iff $a\,R\,b$ and $a\,S\,b$
+        \item $a\,(R - S)\,b$ iff $a\,R\,b$ and not $a\,S\,b$
+    \end{itemize}
+
+
+    \newpage
     \section{Exercises}
     \label{sec:exercises}
 
+    \subsection*{Exercise 1}
+
+    Give the subformulas of the following propositional formulae:
+
+    \begin{enumerate}
+        \item $(p_1 \vee p_2) \wedge (p_3 \vee p_4)$
+        \item $\neg (\neg p_1 \wedge \neg p_2)$
+        \item $(\neg p_1 \wedge (\neg p_2 \rightarrow p_3))$
+    \end{enumerate}
+
+    
+    \subsection*{Exercise 2}
+
+    Soundness and completeness are important properties of proof calculi.
+    Why is it important that both properties are met at the same time?
+    To illustrate your answer, please give a definition of a provability predicate $\vdash$ (i.e.\ ``$\vdash A$'' means $A$ is provable) that\ldots
+
+    \begin{enumerate}
+        \item is sound for propositional logic, but not complete.
+        \item is complete for propositional logic, but not sound.
+    \end{enumerate}
+
+    
+    \subsection*{Exercise 3}
+
+    Provide all variable assignments verifying the following propositional formulae:
+
+    \begin{enumerate}
+        \item $\neg p_1 \vee p_2$
+        \item $\neg p_1 \wedge (p_2 \rightarrow p_3)$
+        \item $(p_1 \rightarrow p_2) \wedge (\neg p_3)$
+    \end{enumerate}
+
+    \subsection*{Exercise 4}
+
+    Simplify the following propositional formulas step-by-step by repeatedly applying De Morgan's Laws and other logical equivalences:
+
+    \begin{enumerate}
+        \item $\neg ((p \vee q) \wedge (\neg r \vee s))$
+
+        \item $\neg (\neg(p \wedge q) \vee (\neg r \wedge t))$
+
+        \item $\neg ((\neg(p \vee q)) \wedge \neg(\neg r \vee s))$
+
+        \item $\neg ((\neg p \vee q) \wedge (\neg t \vee \neg u))$
+    \end{enumerate}
+
+    \subsection*{Exercise 5}
+
+    Show the following propositional formulae are not valid.
+    If they are satisfiable, provide a variable assignment verifying them:
+
+    \begin{enumerate}
+        \item $(p_1 \vee p_2) \wedge (p_3 \vee p_4)$
+        \item $\neg (\neg p_1 \wedge \neg p_2)$
+        \item $(\neg p_1 \wedge (\neg p_2 \rightarrow p_3))$
+    \end{enumerate}
 
 
 
