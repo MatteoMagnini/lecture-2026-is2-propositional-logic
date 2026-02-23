@@ -1,0 +1,267 @@
+%! Author = matteomagnini
+%! Date = 17/02/26
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{
+    Intelligent System 2\\
+    Tutorial week 1: Propositional logic
+}
+
+% Document
+\begin{document}
+
+    \maketitle
+
+    \section{Exercises}
+    \label{sec:exercises}
+
+    \subsection*{Exercise 1}
+
+    Give the subformulas of the following propositional formulae:
+
+    \begin{enumerate}
+        \item $(p_1 \vee p_2) \wedge (p_3 \vee p_4)$
+        \item $\neg (\neg p_1 \wedge \neg p_2)$
+        \item $(\neg p_1 \wedge (\neg p_2 \rightarrow p_3))$
+    \end{enumerate}
+
+    \subsection*{Solution to Exercise 1}
+
+    Below are all the subformulas for each given propositional formula:
+
+    \begin{enumerate}
+        \item \textbf{$(p_1 \vee p_2) \wedge (p_3 \vee p_4)$}
+
+        The subformulas are:
+        \begin{itemize}
+            \item $(p_1 \vee p_2) \wedge (p_3 \vee p_4)$
+            \item $(p_1 \vee p_2)$
+            \item $p_1$
+            \item $p_2$
+            \item $(p_3 \vee p_4)$
+            \item $p_3$
+            \item $p_4$
+        \end{itemize}
+
+        \item \textbf{$\neg (\neg p_1 \wedge \neg p_2)$}
+
+        The subformulas are:
+        \begin{itemize}
+            \item $\neg(\neg p_1 \wedge \neg p_2)$
+            \item $(\neg p_1 \wedge \neg p_2)$
+            \item $\neg p_1$
+            \item $p_1$
+            \item $\neg p_2$
+            \item $p_2$
+        \end{itemize}
+
+        \item \textbf{$(\neg p_1 \wedge (\neg p_2 \rightarrow p_3))$}
+
+        The subformulas are:
+        \begin{itemize}
+            \item $(\neg p_1 \wedge (\neg p_2 \rightarrow p_3))$
+            \item $\neg p_1$
+            \item $p_1$
+            \item $(\neg p_2 \rightarrow p_3)$
+            \item $\neg p_2$
+            \item $p_2$
+            \item $p_3$
+        \end{itemize}
+    \end{enumerate}
+
+    
+    \subsection*{Exercise 2}
+
+    Soundness and completeness are important properties of proof calculi.
+    Why is it important that both properties are met at the same time?
+    To illustrate your answer, please give a definition of a provability predicate $\vdash$ (i.e.\ ``$\vdash A$'' means $A$ is provable) that\ldots
+
+    \begin{enumerate}
+        \item is sound for propositional logic, but not complete.
+        \item is complete for propositional logic, but not sound.
+    \end{enumerate}
+
+    \subsection*{Solution to Exercise 2}
+
+    \textbf{Answer:}
+
+    Soundness ensures that every provable formula is also a semantic truth (valid in all interpretations),
+    while completeness guarantees that every semantic truth is provable in the calculus.
+    %
+    Both properties are essential:
+    if only soundness holds,
+    the calculus might fail to prove some true formulas (it is too weak);
+    if only completeness holds,
+    the calculus may allow the proof of formulas that are not actually true (it is too permissive).
+    %
+    Only when both soundness and completeness hold can we be confident that ``provable'' and ``true'' coincide.
+
+    \begin{enumerate}
+        \item \textbf{A provability predicate that is sound but not complete:}
+
+        Define $\vdash A$ to mean ``$A$ is of the form $p \vee \neg p$ for some variable $p$\,'', i.e., only certain tautologies are considered provable, while most valid formulas are not.
+
+        Formally,
+        $$
+        \vdash A \iff A \text{ is syntactically of the form } (p \vee \neg p)
+        $$
+        This system is sound (it never proves something false), but it is not complete (there are many valid formulas that cannot be proved).
+
+        \item \textbf{A provability predicate that is complete but not sound:}
+
+        Define $\vdash A$ to mean ``$A$ is any propositional formula'', i.e., every formula is provable, regardless of whether it is valid.
+
+        Formally,
+        $$
+        \vdash A \quad \text{for every formula } A
+        $$
+        In this case, every valid formula is provable (completeness), but also invalid ones are provable (not sound).
+    \end{enumerate}
+
+    
+    \subsection*{Exercise 3}
+
+    Provide all variable assignments verifying the following propositional formulae:
+
+    \begin{enumerate}
+        \item $\neg p_1 \vee p_2$
+        \item $\neg p_1 \wedge (p_2 \rightarrow p_3)$
+        \item $(p_1 \rightarrow p_2) \wedge (\neg p_3)$
+    \end{enumerate}
+
+    \subsection*{Solution to Exercise 3}
+
+    For each formula, list all assignments of propositional variables that make the formula true.
+
+    \begin{enumerate}
+        \item $\neg p_1 \vee p_2$
+
+        The formula is true in all cases except when $p_1 = \text{True}$ and $p_2 = \text{False}$.
+        \begin{itemize}
+            \item $p_1 = \text{False}$, $p_2 = \text{False}$: True
+            \item $p_1 = \text{False}$, $p_2 = \text{True}$: True
+            \item $p_1 = \text{True}$, $p_2 = \text{True}$: True
+            \item $p_1 = \text{True}$, $p_2 = \text{False}$: False
+        \end{itemize}
+
+        \item $\neg p_1 \wedge (p_2 \rightarrow p_3)$
+
+        The formula is true if $p_1 = \text{False}$ and either $p_2 = \text{False}$ or $p_3 = \text{True}$.
+        \begin{itemize}
+            \item $p_1 = \text{False}$, $p_2 = \text{False}$, $p_3 = \text{False}$: True
+            \item $p_1 = \text{False}$, $p_2 = \text{False}$, $p_3 = \text{True}$: True
+            \item $p_1 = \text{False}$, $p_2 = \text{True}$, $p_3 = \text{True}$: True
+            \item $p_1 = \text{False}$, $p_2 = \text{True}$, $p_3 = \text{False}$: False
+            \item Any assignment with $p_1 = \text{True}$: False
+        \end{itemize}
+
+        \item $(p_1 \rightarrow p_2) \wedge (\neg p_3)$
+
+        The formula is true if $p_3 = \text{False}$ and either $p_1 = \text{False}$ or $p_2 = \text{True}$.
+        \begin{itemize}
+            \item $p_1 = \text{False}$, $p_2 = \text{False}$, $p_3 = \text{False}$: True
+            \item $p_1 = \text{False}$, $p_2 = \text{True}$, $p_3 = \text{False}$: True
+            \item $p_1 = \text{True}$, $p_2 = \text{True}$, $p_3 = \text{False}$: True
+            \item $p_1 = \text{True}$, $p_2 = \text{False}$, $p_3 = \text{False}$: False
+            \item Any assignment with $p_3 = \text{True}$: False
+        \end{itemize}
+    \end{enumerate}
+
+
+    \subsection*{Exercise 4}
+
+    Simplify the following propositional formulas step-by-step by repeatedly applying De Morgan's Laws and other logical equivalences:
+
+    \begin{enumerate}
+        \item $\neg ((p \vee q) \wedge (\neg r \vee s))$
+
+        \item $\neg (\neg(p \wedge q) \vee (\neg r \wedge t))$
+
+        \item $\neg ((\neg(p \vee q)) \wedge \neg(\neg r \vee s))$
+
+        \item $\neg ((\neg p \vee q) \wedge (\neg t \vee \neg u))$
+    \end{enumerate}
+
+    \subsection*{Solution to Exercise 4}
+
+    \begin{enumerate}
+        \item
+        $\neg \big[ (p \vee q) \wedge (\neg r \vee s) \big]$
+        \begin{align*}
+            &= \neg (p \vee q) \vee \neg (\neg r \vee s) \quad\text{(De Morgan's Law)} \\
+            &= (\neg p \wedge \neg q) \vee (\neg (\neg r) \wedge \neg s) \quad\text{(De Morgan's Law)} \\
+            &= (\neg p \wedge \neg q) \vee (r \wedge \neg s) \quad\text{(Double negation)}
+        \end{align*}
+
+        \item
+        $\neg \big[ \neg(p \wedge q) \vee (\neg r \wedge t) \big]$
+        \begin{align*}
+            &= \neg \neg(p \wedge q) \wedge \neg (\neg r \wedge t) \quad\text{(De Morgan's Law)} \\
+            &= (p \wedge q) \wedge (\neg (\neg r) \vee \neg t) \quad\text{(De Morgan's Law)} \\
+            &= (p \wedge q) \wedge (r \vee \neg t) \quad\text{(Double negation)}
+        \end{align*}
+
+        \item
+        $\neg \big[ \neg(p \vee q) \wedge \neg(\neg r \vee s) \big]$
+        \begin{align*}
+            &= \neg \neg(p \vee q) \vee \neg \neg(\neg r \vee s) \quad\text{(De Morgan's Law)} \\
+            &= (p \vee q) \vee (\neg \neg(\neg r \vee s)) \quad\text{(Double negation)} \\
+            &= (p \vee q) \vee (\neg r \vee s) \quad\text{(Double negation)}
+        \end{align*}
+
+        \item
+        $\neg \big[ (\neg p \vee q) \wedge (\neg t \vee \neg u) \big]$
+        \begin{align*}
+            &= \neg (\neg p \vee q) \vee \neg (\neg t \vee \neg u) \quad\text{(De Morgan's Law)} \\
+            &= (p \wedge \neg q) \vee (t \wedge u) \quad\text{(De Morgan's Law)}
+        \end{align*}
+    \end{enumerate}
+
+    \subsection*{Exercise 5}
+
+    Show the following propositional formulae are not valid.
+    If they are satisfiable, provide a variable assignment verifying them:
+
+    \begin{enumerate}
+        \item $(p_1 \vee p_2) \wedge (p_3 \vee p_4)$
+        \item $\neg (\neg p_1 \wedge \neg p_2)$
+        \item $(\neg p_1 \wedge (\neg p_2 \rightarrow p_3))$
+    \end{enumerate}
+
+    \subsection*{Solution to Exercise 5}
+
+    \begin{enumerate}
+        \item \textbf{$(p_1 \vee p_2) \wedge (p_3 \vee p_4)$}
+
+        This formula is not valid, as it is not true under all assignments.
+        For example, if $p_1 = \text{False}$, $p_2 = \text{False}$, $p_3 = \text{False}$, $p_4 = \text{False}$, the formula evaluates to $\text{False}$.
+
+        However, it is satisfiable. For instance, if $p_1 = \text{True}$, $p_2 = \text{False}$, $p_3 = \text{True}$, $p_4 = \text{False}$, the formula evaluates to $\text{True}$.
+
+        \item \textbf{$\neg (\neg p_1 \wedge \neg p_2)$}
+
+        This formula is not valid, since for $p_1 = \text{False}$ and $p_2 = \text{False}$, $\neg p_1 = \text{True}$, $\neg p_2 = \text{True}$, and the formula becomes $\neg (\text{True} \wedge \text{True}) = \neg \text{True} = \text{False}$.
+
+        It is satisfiable, for example, with $p_1 = \text{True}$, $p_2 = \text{False}$ (the formula is $\neg (\text{False} \wedge \text{True}) = \neg \text{False} = \text{True}$).
+
+        \item \textbf{$(\neg p_1 \wedge (\neg p_2 \rightarrow p_3))$}
+
+        This formula is not valid. For example, if $p_1 = \text{True}$, $p_2 = \text{True}$, $p_3 = \text{False}$, then $\neg p_1 = \text{False}$ and the whole formula is $\text{False}$.
+
+        It is satisfiable. For example, if $p_1 = \text{False}$, $p_2 = \text{True}$, $p_3 = \text{False}$:
+        \begin{itemize}
+            \item $\neg p_1 = \text{True}$
+            \item $\neg p_2 = \text{False}$
+            \item $(\neg p_2 \rightarrow p_3) = (\text{False} \rightarrow \text{False}) = \text{True}$
+            \item Therefore, $\text{True} \wedge \text{True} = \text{True}$
+        \end{itemize}
+    \end{enumerate}
+
+
+\end{document}
